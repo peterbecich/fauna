@@ -1,0 +1,22 @@
+sudo: false
+dist: bionic
+language: python
+python:
+  - "2.7"
+node_js:
+- '10'
+- '12'
+
+cache: pip
+
+addons:
+  apt:
+    update: true
+
+install:
+  - travis_retry git submodule update --init --recursive
+  - pip install -r requirements.txt
+  - cd chateau && npm install
+
+script:
+  - ./install.sh
